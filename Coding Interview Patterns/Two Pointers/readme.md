@@ -10,3 +10,4 @@
   
 ## [Problems](#problems)
 - [Remove nth Node from End of List](https://github.com/AkshayChandole/Interview-Preparation-Roadmap/blob/main/Coding%20Interview%20Patterns/Two%20Pointers/RemoveNthNodeFromEndOfList.md#remove-nth-node-from-end-of-list)
+- [Sort Colors](https://github.com/AkshayChandole/Interview-Preparation-Roadmap/blob/main/Coding%20Interview%20Patterns/Two%20Pointers/SortColors.md#sort-colors)
