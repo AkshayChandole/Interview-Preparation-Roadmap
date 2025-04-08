@@ -9,4 +9,4 @@
 - For example, to identify whether a string is a palindrome, we can use one pointer to iterate the string from the beginning and the other to iterate it from the end. At each step, we can compare the values of the two pointers and see if they meet the palindrome properties.
   
 ## [Problems](#problems)
-- [Remove nth Node from End of List]()
+- [Remove nth Node from End of List](https://github.com/AkshayChandole/Interview-Preparation-Roadmap/blob/main/Coding%20Interview%20Patterns/Two%20Pointers/RemoveNthNodeFromEndOfList.md#remove-nth-node-from-end-of-list)
