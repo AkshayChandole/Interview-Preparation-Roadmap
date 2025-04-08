@@ -8,3 +8,5 @@
 - The pointers can be used to iterate through the data structure in one or both directions, depending on the problem statement.
 - For example, to identify whether a string is a palindrome, we can use one pointer to iterate the string from the beginning and the other to iterate it from the end. At each step, we can compare the values of the two pointers and see if they meet the palindrome properties.
   
+## [Problems](#problems)
+- [Remove nth Node from End of List]()
