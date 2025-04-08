@@ -1,70 +1,68 @@
-
 # [Reverse Words in a String](#reverse-words-in-a-string)
 
 ## Statement  
-Given a sentence, reverse the **order of the words** without reversing the characters inside the words.  
-
-The output string should have:
-- No leading/trailing spaces.
-- A **single space** between words.
+Given a sentence, reverse the order of its words **without affecting the order of letters within the given word**.
 
 ---
 
-### ✅ Constraints:
-
-- `1 <= sentence.length <= 10⁴`
-- Input contains English letters (a-z, A-Z), digits (0-9), and spaces.
-- Words are defined as sequences of non-space characters.
-
----
-
-## ✅ Problem Understanding
-
-You're given a string that may contain:
-- Extra leading/trailing spaces
-- Multiple spaces between words
-
-Your goal:
-- Clean it up (one space between words)
-- Reverse the **order of words**, **not** the letters in each word.
+#### Constraints:
+- The sentence contains English uppercase and lowercase letters, digits, and spaces.
+- `1 ≤ sentence.length ≤ 10^4`
+- Words are separated by spaces.  
+- Leading/trailing spaces or multiple spaces may exist.
+- The result should only have **single spaces between words** and **no leading/trailing spaces**.
 
 ---
 
-## 🔍 Example
+## Solution:
 
-### Input:
-```text
-"  Hello   world! This   is Java  "
-```
+### ✅ Problem Understanding
 
-### Output:
-```text
-"Java is This world! Hello"
-```
+We are asked to **reverse the order of words**, not the characters within the words.  
+Also, we must **remove extra spaces** (leading/trailing/multiple spaces between words).
 
 ---
 
-## 🧠 Brute Force Approach
+### ✅ Constraints and Edge Cases
 
-### 👉 Idea:
-1. Use `trim()` to remove leading/trailing spaces.
-2. Use `split("\\s+")` to split by one or more spaces.
-3. Reverse the resulting array of words.
-4. Join them using `" "`.
+- Sentence might have:
+  - Leading and trailing spaces.
+  - Multiple spaces between words.
+- Sentence can be a single word.
+- Sentence can contain only spaces.
 
-### 🔧 Java Code:
+---
+
+### 🧠 Two Pointer Approach using Word Array
+
+#### 👉 Idea:
+
+1. Trim the sentence to remove leading/trailing spaces.
+2. Split the sentence using regular expression `"\\s+"` to handle multiple spaces.
+3. Use two pointers to reverse the `words[]` array **in-place**.
+4. Join the words with a single space to return the final sentence.
+
+---
+
+#### 🔧 Java Code:
+
 ```java
 import java.util.*;
 
 public class Solution {
     public static String reverseWords(String sentence) {
-        // Trim and split by multiple spaces
-        String[] words = sentence.trim().split("\\s+");
+        sentence = sentence.trim();
+        String[] words = sentence.split("\\s+");
+        int left = 0, right = words.length - 1;
 
-        // Reverse the array
-        Collections.reverse(Arrays.asList(words));
+        while (left < right) {
+            String temp = words[left];
+            words[left] = words[right];
+            words[right] = temp;
+            left++;
+            right--;
+        }
 
-        // Join using single space
         return String.join(" ", words);
     }
 }
@@ -72,29 +70,28 @@ public class Solution {
 
 ---
 
-### ⏱️ Time Complexity:
-- **O(N)** → to split, reverse, and join the string  
-### 🧠 Space Complexity:
-- **O(N)** → for storing the words array
+### 🧪 Dry Run:
+
+Input: `"  Hello   world! This   is Java  "`  
+- After trimming: `"Hello   world! This   is Java"`  
+- After splitting: `["Hello", "world!", "This", "is", "Java"]`  
+- After reversing: `["Java", "is", "This", "world!", "Hello"]`  
+- Final Output: `"Java is This world! Hello"`
 
 ---
 
-## ⚙️ In-Place (Character Array Manipulation) — Optional
+### ⏱️ Time Complexity:
+- **O(N)** – where N is the length of the string
 
-This version:
-- Converts the string to a char array
-- Reverses the whole array
-- Then reverses individual words
-
-More complex, but not needed unless strict in-place is required.
+### 🧠 Space Complexity:
+- **O(N)** – due to the array used in split and String.join
 
 ---
 
 ### ✅ Summary:
 
-| Approach       | Time Complexity | Space Complexity | Notes                           |
-|----------------|----------------|------------------|---------------------------------|
-| Brute Force    | O(N)           | O(N)             | Clean, readable, easy to implement |
-| In-place (opt) | O(N)           | O(1) (char array) | Complex, useful for low-level optimization |
+| Approach                  | Time Complexity | Space Complexity | Notes                          |
+|---------------------------|-----------------|------------------|---------------------------------|
+| Two Pointer (split array) | O(N)            | O(N)             | Clean and simple to implement  |
 
 ---
